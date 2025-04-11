@@ -1,58 +1,92 @@
-body {
-  font-family: Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background: linear-gradient(135deg, #57dac2, #5d75df); /* gradient background */
+.app {
+  position: relative;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   max-width: 600px;
   margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #f8f8f8;
-  border-radius: 5px;
-  background-color: #81deee;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* optional shadow for better contrast */
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 255, 0, 0.3);
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+.question {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
 }
 
 .options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 15px;
 }
 
 .option {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(0, 20, 0, 0.5);
+  text-align: center;
 }
 
 .option:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(0, 100, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+  transform: translateY(-2px);
 }
 
 .result {
   margin-top: 20px;
   text-align: center;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 3px;
+  background-color: #0f0;
+  color: #000;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #00cc00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.9);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .options {
+    grid-template-columns: 1fr;
+  }
 }

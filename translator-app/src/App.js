@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
+import RipplesBackground from './components/Ripplesbackground.js';
 
 function App() {
   const [englishWord, setEnglishWord] = useState('');
   const [tagalogTranslation, setTagalogTranslation] = useState('');
-  const [isTranslating, setIsTranslating] = useState(false);
-  const [error, setError] = useState('');
 
   const translateWord = () => {
-    setIsTranslating(true);
-    setError('');
-
     // Simulated translation mapping
     const translations = {
       hello: 'kamusta',
@@ -18,23 +14,26 @@ function App() {
       example: 'halimbawa',
       good: 'mabuti',
       morning: 'umaga',
-      night: 'gabi',
-      love: 'mahal',
+      evening: 'gabi',
+      friend: 'kaibigan',
       thank: 'salamat',
-      water: 'tubig',
+      you: 'ikaw',
+      welcome: 'walang anuman',
+      goodbye: 'paalam',
+      yes: 'oo',
+      no: 'hindi',
+      please: 'pakiusap',
+      sorry: 'patawad',
+      love: 'pag-ibig',
       food: 'pagkain',
+      water: 'tubig',
+      house: 'bahay',
+      family: 'pamilya'
+      // Add more translations as needed
     };
 
-    // Simulate slight delay for better UX
-    setTimeout(() => {
-      const translation = translations[englishWord.toLowerCase()];
-      if (translation) {
-        setTagalogTranslation(translation);
-      } else {
-        setError('Translation not found');
-      }
-      setIsTranslating(false);
-    }, 500);
+    const translation = translations[englishWord.toLowerCase()];
+    setTagalogTranslation(translation || 'Translation not found');
   };
 
   const handleKeyPress = (e) => {
@@ -44,28 +43,28 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>English to Tagalog Translator</h1>
-      <div className="input-group">
-        <label>English Word:</label>
-        <input
-          type="text"
-          value={englishWord}
-          onChange={(e) => setEnglishWord(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Type an English word..."
-        />
-      </div>
-      <button onClick={translateWord} disabled={isTranslating}>
-        {isTranslating ? 'Translating...' : 'Translate'}
-      </button>
-      {tagalogTranslation && (
-        <div className="result">
-        <h2>TAGALOG TRANSLATION:</h2>
-          <p>{tagalogTranslation}</p>
+    <div className="app">
+      <RipplesBackground />
+      <div className="container">
+        <h1>English to Tagalog Translator</h1>
+        <div className="input-group">
+          <label>English Word:</label>
+          <input 
+            type="text" 
+            value={englishWord} 
+            onChange={(e) => setEnglishWord(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Enter an English word"
+          />
         </div>
-      )}
-      {error && <p className="error">{error}</p>}
+        <button onClick={translateWord}>Translate</button>
+        {tagalogTranslation && (
+          <div className="result">
+            <h2>Tagalog Translation:</h2>
+            <p className="translation">{tagalogTranslation}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
